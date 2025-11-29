@@ -8,8 +8,8 @@
 // 5. アクセス権限を「全員」に設定
 // 6. デプロイURLをapp.jsのGAS_ENDPOINTに設定
 
-// スプレッドシートID（現在アクティブなスプレッドシートを使用）
-const SPREADSHEET_ID = SpreadsheetApp.getActiveSpreadsheet().getId();
+// スプレッドシートID（あなたのスプレッドシートID）
+const SPREADSHEET_ID = '1S3XfBUJr6KrMS7EJEa5PYdRW2UabCvnpDyPH1BSV8v0';
 const SHEET_NAME = '支出記録';
 
 // POSTリクエストを処理

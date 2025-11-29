@@ -1,20 +1,54 @@
+/* ========================================
+   支出記録アプリ (Expense Tracker)
+   スタイルシート
+
+   仕様: 仕様書.md 参照
+   カラーパレット:
+   - プライマリ: #667eea (紫)
+   - セカンダリ: #48bb78 (緑)
+   - 削除: #f56565 (赤)
+   - 背景グラデーション: #667eea → #764ba2
+======================================== */
+
+/* ========================================
+   基本設定・リセット
+======================================== */
+
+/* 全要素のマージン・パディングをリセット */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* body全体の設定 */
 body {
+    /* システムフォントを優先使用 */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+    /* 紫系グラデーション背景 */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    /* 最小高さを画面全体に */
     min-height: 100vh;
+
+    /* 全体の余白 */
     padding: 20px;
 }
 
+/* ========================================
+   レイアウト・コンテナ
+======================================== */
+
+/* メインコンテナ（最大幅900px・中央寄せ） */
 .container {
     max-width: 900px;
     margin: 0 auto;
 }
+
+/* ========================================
+   ヘッダーセクション
+======================================== */
 
 header {
     text-align: center;
@@ -24,30 +58,47 @@ header {
 
 header h1 {
     font-size: 2.5rem;
+    /* 影をつけて視認性向上 */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* ========================================
+   セクション共通スタイル
+   (入力・集計・一覧セクション)
+======================================== */
+
 section {
+    /* 白背景のカード */
     background: white;
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 20px;
+
+    /* 影をつけて立体感を演出 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* セクション見出し */
 h2 {
     color: #333;
     margin-bottom: 20px;
     font-size: 1.5rem;
+
+    /* 下部にプライマリカラーのボーダー */
     border-bottom: 3px solid #667eea;
     padding-bottom: 10px;
 }
 
-/* フォームスタイル */
+/* ========================================
+   フォームスタイル（支出入力セクション）
+======================================== */
+
+/* フォームグループ（各入力項目の外枠） */
 .form-group {
     margin-bottom: 15px;
 }
 
+/* ラベル（項目名） */
 .form-group label {
     display: block;
     margin-bottom: 5px;
@@ -55,6 +106,7 @@ h2 {
     font-weight: 600;
 }
 
+/* 入力フィールド・セレクトボックス */
 .form-group input,
 .form-group select {
     width: 100%;
@@ -62,16 +114,24 @@ h2 {
     border: 2px solid #e0e0e0;
     border-radius: 6px;
     font-size: 1rem;
+
+    /* フォーカス時のアニメーション */
     transition: border-color 0.3s;
 }
 
+/* フォーカス時（入力中）のスタイル */
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
+    /* ボーダーをプライマリカラーに変更 */
     border-color: #667eea;
 }
 
-/* ボタンスタイル */
+/* ========================================
+   ボタンスタイル
+======================================== */
+
+/* ボタン共通スタイル */
 .btn {
     padding: 12px 24px;
     border: none;
@@ -79,31 +139,40 @@ h2 {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+
+    /* ホバー時のアニメーション */
     transition: all 0.3s;
 }
 
+/* プライマリボタン（記録ボタン） */
 .btn-primary {
     background: #667eea;
     color: white;
     width: 100%;
 }
 
+/* プライマリボタンのホバー時 */
 .btn-primary:hover {
     background: #5568d3;
+    /* 上に少し浮く効果 */
     transform: translateY(-2px);
+    /* 影を強調 */
     box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
 }
 
+/* セカンダリボタン（同期ボタン） */
 .btn-secondary {
     background: #48bb78;
     color: white;
     margin-bottom: 15px;
 }
 
+/* セカンダリボタンのホバー時 */
 .btn-secondary:hover {
     background: #38a169;
 }
 
+/* 削除ボタン */
 .btn-delete {
     background: #f56565;
     color: white;
@@ -111,38 +180,50 @@ h2 {
     font-size: 0.875rem;
 }
 
+/* 削除ボタンのホバー時 */
 .btn-delete:hover {
     background: #e53e3e;
 }
 
-/* カテゴリ別集計 */
+/* ========================================
+   カテゴリ別集計セクション
+======================================== */
+
+/* カテゴリ別集計のグリッドレイアウト */
 .category-summary {
     display: grid;
+    /* レスポンシブグリッド（最小200px） */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
 }
 
+/* カテゴリ別の各アイテム */
 .category-item {
     background: #f7fafc;
     padding: 15px;
     border-radius: 8px;
+    /* 左側にアクセントカラーのボーダー */
     border-left: 4px solid #667eea;
 }
 
+/* カテゴリ名 */
 .category-item h3 {
     color: #667eea;
     font-size: 1rem;
     margin-bottom: 8px;
 }
 
+/* カテゴリ別金額 */
 .category-item .amount {
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
 }
 
+/* 合計金額エリア */
 .total-amount {
+    /* プライマリカラーの背景 */
     background: #667eea;
     color: white;
     padding: 20px;
@@ -151,47 +232,64 @@ h2 {
     font-size: 1.25rem;
 }
 
+/* 合計金額の数値部分 */
 .total-amount span {
     font-size: 2rem;
     font-weight: bold;
 }
 
-/* 支出一覧 */
+/* ========================================
+   支出一覧セクション
+======================================== */
+
+/* フィルターコントロールエリア */
 .filter-controls {
     margin-bottom: 15px;
 }
 
+/* 支出一覧コンテナ */
 #expense-list {
+    /* スクロール可能な高さ制限 */
     max-height: 500px;
     overflow-y: auto;
 }
 
+/* 支出アイテム（各行） */
 .expense-item {
     background: #f7fafc;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 8px;
+
+    /* Flexboxで横並び */
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    /* ホバー時のアニメーション */
     transition: transform 0.2s;
 }
 
+/* 支出アイテムのホバー時 */
 .expense-item:hover {
+    /* 右に少し動く効果 */
     transform: translateX(5px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* 支出情報エリア（左側） */
 .expense-info {
     flex: 1;
 }
 
+/* 日付表示 */
 .expense-date {
     color: #718096;
     font-size: 0.875rem;
     margin-bottom: 5px;
 }
 
+/* カテゴリバッジ */
 .expense-category {
     display: inline-block;
     background: #667eea;
@@ -202,11 +300,13 @@ h2 {
     margin-right: 10px;
 }
 
+/* メモ表示 */
 .expense-memo {
     color: #4a5568;
     margin-top: 5px;
 }
 
+/* 金額表示（右側） */
 .expense-amount {
     font-size: 1.5rem;
     font-weight: bold;
@@ -214,6 +314,7 @@ h2 {
     margin-right: 15px;
 }
 
+/* 空状態メッセージ（データがない場合） */
 .empty-message {
     text-align: center;
     color: #a0aec0;
@@ -221,21 +322,29 @@ h2 {
     font-size: 1.1rem;
 }
 
-/* レスポンシブ */
+/* ========================================
+   レスポンシブデザイン
+   (スマートフォン・タブレット対応)
+======================================== */
+
 @media (max-width: 768px) {
+    /* ヘッダータイトルを小さく */
     header h1 {
         font-size: 2rem;
     }
 
+    /* 支出アイテムを縦並びに */
     .expense-item {
         flex-direction: column;
         align-items: flex-start;
     }
 
+    /* 金額の余白調整 */
     .expense-amount {
         margin: 10px 0;
     }
 
+    /* カテゴリ集計を1カラムに */
     .category-summary {
         grid-template-columns: 1fr;
     }

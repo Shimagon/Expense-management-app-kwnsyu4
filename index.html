@@ -3,27 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>支出管理アプリ</title>
+    <title>支出記録アプリ - Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- メインコンテナ -->
     <div class="container">
+
+        <!-- ========================================
+             ヘッダーセクション
+             アプリケーションのタイトルを表示
+        ========================================= -->
         <header>
             <h1>💰 支出管理アプリ</h1>
         </header>
 
-        <!-- 支出入力フォーム -->
+        <!-- ========================================
+             支出入力セクション (F001-F005)
+             機能: 支出情報の入力と保存
+        ========================================= -->
         <section class="input-section">
             <h2>支出を記録</h2>
             <form id="expense-form">
+
+                <!-- 日付入力 (必須) -->
                 <div class="form-group">
                     <label for="date">日付</label>
-                    <input type="date" id="date" required>
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        required
+                        aria-label="支出の日付を選択"
+                    >
                 </div>
 
+                <!-- カテゴリ選択 (必須・プルダウン形式) -->
                 <div class="form-group">
                     <label for="category">カテゴリ</label>
-                    <select id="category" required>
+                    <select
+                        id="category"
+                        name="category"
+                        required
+                        aria-label="支出のカテゴリを選択"
+                    >
                         <option value="">選択してください</option>
                         <option value="食費">食費</option>
                         <option value="交通費">交通費</option>
@@ -35,39 +58,75 @@
                     </select>
                 </div>
 
+                <!-- 金額入力 (必須・0以上の整数) -->
                 <div class="form-group">
                     <label for="amount">金額 (円)</label>
-                    <input type="number" id="amount" min="0" required>
+                    <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        min="0"
+                        step="1"
+                        required
+                        placeholder="例: 800"
+                        aria-label="支出の金額を入力"
+                    >
                 </div>
 
+                <!-- メモ入力 (任意) -->
                 <div class="form-group">
                     <label for="memo">メモ</label>
-                    <input type="text" id="memo" placeholder="例: ランチ">
+                    <input
+                        type="text"
+                        id="memo"
+                        name="memo"
+                        maxlength="100"
+                        placeholder="例: ランチ"
+                        aria-label="支出のメモを入力"
+                    >
                 </div>
 
+                <!-- 送信ボタン -->
                 <button type="submit" class="btn btn-primary">記録する</button>
             </form>
         </section>
 
-        <!-- カテゴリ別集計 -->
+        <!-- ========================================
+             カテゴリ別集計セクション (F021-F024)
+             機能: カテゴリごとの合計金額と全体合計の表示
+        ========================================= -->
         <section class="summary-section">
             <h2>カテゴリ別集計</h2>
-            <div id="category-summary"></div>
+
+            <!-- カテゴリ別の集計結果を動的に表示 -->
+            <div id="category-summary" aria-live="polite"></div>
+
+            <!-- 全体の合計金額 -->
             <div class="total-amount">
                 <strong>合計:</strong> <span id="total-amount">0</span> 円
             </div>
         </section>
 
-        <!-- 支出一覧 -->
+        <!-- ========================================
+             支出一覧セクション (F011-F014)
+             機能: 記録済み支出の一覧表示と削除
+        ========================================= -->
         <section class="list-section">
             <h2>支出一覧</h2>
+
+            <!-- 外部連携ボタン (F041-F042) -->
             <div class="filter-controls">
-                <button id="sync-btn" class="btn btn-secondary">スプレッドシートと同期</button>
+                <button id="sync-btn" class="btn btn-secondary">
+                    スプレッドシートと同期
+                </button>
             </div>
-            <div id="expense-list"></div>
+
+            <!-- 支出一覧を動的に表示 -->
+            <div id="expense-list" aria-live="polite"></div>
         </section>
     </div>
 
-    <script src="app.js"></script>
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="main.js"></script>
 </body>
 </html>
